@@ -18,10 +18,10 @@ from Bio.Blast.Applications import NcbiblastnCommandline
 
 
 parser = argparse.ArgumentParser(description='manual to this script')
-parser.add_argument('--infile', type=str, default = 'virus')
-parser.add_argument('--outfolder', type=str, default = 'virus')
-parser.add_argument('--datasetpth', type=str, default = 'virus')
-parser.add_argument('--datasetpth', type=str, default = 'virus')
+parser.add_argument('--infile', type=str, default = 'virus.fa')
+parser.add_argument('--outfolder', type=str, default = 'out')
+parser.add_argument('--datasetpth', type=str, default = 'dataset')
+parser.add_argument('--threads', type=float, default = 16)
 parser.add_argument('--ident', type=float, default = 0.75)
 parser.add_argument('--coverage', type=float, default = 0.75)
 inputs = parser.parse_args()
@@ -31,6 +31,7 @@ infile     = inputs.infile
 outfolder  = inputs.outfolder
 coverage_in   = inputs.coverage
 ident_in      = inputs.ident
+threads       = inputs.threads
 
 def check_folder(file_name):
     if not os.path.exists(file_name):
@@ -55,9 +56,10 @@ check_folder(outfolder)
 query_file = f"{infile}"
 db_host_crispr_prefix = f"{datasetpth}/crispr_db/allCRISPRs"
 output_file = f"{outfolder}/alignment_result.tab"
+bacteria_df = pd.read_csv(f'{datasetpth}/prokaryote.csv')
 crispr_call = NcbiblastnCommandline(query=query_file,db=db_host_crispr_prefix,out=output_file,outfmt="6 qseqid sseqid evalue pident length slen", evalue=1,gapopen=10,penalty=-1,
                                   gapextend=2,word_size=7,dust='no',
-                                 task='blastn-short',perc_identity=90,num_threads=16)
+                                 task='blastn-short',perc_identity=90,num_threads=threads)
 crispr_call()
 
 
@@ -82,9 +84,15 @@ with open(f'{outfolder}/prediction.csv', 'w') as f_out:
     for virus in crispr_pred:
         results = f'{virus},'
         for host in crispr_pred[virus]:
-            results += f'{host}｜'
+            try:
+                name = bacteria_df[bacteria_df['Accession'] == host]['Species'].values[0]
+                results += f'{name}({host})｜'
+            except:
+                results += f'({host})｜'
         results = results[:-1]+'\n'
         f_out.write(f'{results}')
+
+os.system(f"sed -i '1i\qseqid\tsseqid\tevalue\tpident\tlength\tslen' {outfolder}/alignment_result.tab")
 
 print('Program complete!')
 
