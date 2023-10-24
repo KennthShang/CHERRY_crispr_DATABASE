@@ -57,8 +57,8 @@ python CHERRY_crispr_multihost/Cherry_multihost.py --infile nucl.fasta --outfold
 
 There are two thresholds for users:
 
-1. --ident: the identity of the CRISPRs alignments (default: 0.75)
-2. --coverage: the coverage of the CRISPRs alignments (default: 75)
+1. --ident: the identity of the CRISPRs alignments (default: 75)
+2. --coverage: the coverage of the CRISPRs alignments (default: 0.75)
 
 
 ## Outputs
