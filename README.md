@@ -41,7 +41,7 @@ conda install blast -c bioconda
 Once install the required environment, you need to activate it when you want to use:
 
 ```
-conda activate cherry_crispr
+conda activate cherry_crispr_multihost
 ```
 
 Then, the command of multi-host extension can be called by:
