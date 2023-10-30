@@ -48,7 +48,7 @@ Then, the command of multi-host extension can be called by:
 
 
 ```
-python PATH_TO_cherry_crispr_multihost/cherry_crispr.py --infile PATH_TO_FASTA --outfolder PATH_TO_OUTPUT_FOLDER --datasetpth [where you place the dataset folder provided in this GitHub] --threads NUM_OF_THREAD --ident IDENTITY_OF_ALIGNMENT --coverage COVERAGE_OF_ALIGNMENT
+python PATH_TO_cherry_crispr_multihost/Cherry_multihost.py --infile PATH_TO_FASTA --outfolder PATH_TO_OUTPUT_FOLDER --datasetpth [where you place the dataset folder provided in this GitHub] --threads NUM_OF_THREAD --ident IDENTITY_OF_ALIGNMENT --coverage COVERAGE_OF_ALIGNMENT
 
 # example
 python CHERRY_crispr_multihost/Cherry_multihost.py --infile nucl.fasta --outfolder test_out/ --datasetpth CHERRY_crispr_multihost/dataset --ident 75 --coverage 0.75
