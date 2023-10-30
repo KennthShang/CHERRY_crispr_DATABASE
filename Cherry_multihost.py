@@ -86,9 +86,9 @@ with open(f'{outfolder}/prediction.csv', 'w') as f_out:
         for host in crispr_pred[virus]:
             try:
                 name = bacteria_df[bacteria_df['Accession'] == host]['Species'].values[0]
-                results += f'{name}({host})｜'
+                results += f'{name}({host})|'
             except:
-                results += f'({host})｜'
+                results += f'({host})|'
         results = results[:-1]+'\n'
         f_out.write(f'{results}')
 
