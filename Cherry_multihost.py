@@ -59,7 +59,7 @@ output_file = f"{outfolder}/alignment_result.tab"
 bacteria_df = pd.read_csv(f'{datasetpth}/prokaryote.csv')
 crispr_call = NcbiblastnCommandline(query=query_file,db=db_host_crispr_prefix,out=output_file,outfmt="6 qseqid sseqid evalue pident length slen", evalue=1,gapopen=10,penalty=-1,
                                   gapextend=2,word_size=7,dust='no',
-                                 task='blastn-short',perc_identity=90,num_threads=threads)
+                                 task='blastn-short',num_threads=threads)
 crispr_call()
 
 
