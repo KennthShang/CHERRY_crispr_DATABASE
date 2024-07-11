@@ -39,9 +39,9 @@ conda install blast -c bioconda
 ## 🚀&nbsp; Quick Start
 
 ```
-git clone https://github.com/KennthShang/CHERRY_crispr_DB.git
+git clone https://github.com/KennthShang/CHERRY_crispr_DATABASE.git
 
-python CHERRY_crispr_DB/Cherry_crispr_db.py --infile nucl.fna --outfolder test_out/ --datasetpth CHERRY_crispr_DB/dataset --ident 95 --coverage 0.95
+python CHERRY_crispr_DATABASE/Cherry_crispr_db.py --infile nucl.fna --outfolder test_out/ --datasetpth CHERRY_crispr_DATABASE/dataset --ident 95 --coverage 0.95
 
 ```
 
@@ -55,7 +55,7 @@ python CHERRY_crispr_DB/Cherry_crispr_db.py --infile nucl.fna --outfolder test_o
       --outfolder 
                             path to the output folder
       --datasetpth 
-                            path to the CHERRY_crispr_DB/dataset/
+                            path to the CHERRY_crispr_DATABASE/dataset/
       --threads 
                             Number of threads to run the program (default 8)
       --ident
@@ -84,7 +84,7 @@ Output:
 <a name="question"></a>
 ## 📫&nbsp; Have a question?
 
-We are happy to hear your question on our issues page [CHERRY](https://github.com/KennthShang/CHERRY_crispr_DB/issues)! Obviously, if you have a private question or want to cooperate with us, you can always **reach out to us directly** via our email: jiayushang@cuhk.edu.hk 
+We are happy to hear your question on our issues page [CHERRY](https://github.com/KennthShang/CHERRY_crispr_DATABASE/issues)! Obviously, if you have a private question or want to cooperate with us, you can always **reach out to us directly** via our email: jiayushang@cuhk.edu.hk 
 
 
 <a name="citation"></a>
