@@ -43,7 +43,7 @@ conda install blast -c bioconda
 ```
 git clone https://github.com/KennthShang/CHERRY_crispr_DATABASE.git
 
-python CHERRY_crispr_DATABASE/Cherry_crispr_db.py --infile nucl.fna --outfolder test_out/ --datasetpth CHERRY_crispr_DATABASE/dataset --ident 95 --coverage 0.95
+python CHERRY_crispr_DATABASE/Cherry_crispr_db.py --infile nucl.fna --outfolder test_out/ --datasetpth CHERRY_crispr_DATABASE/dataset --ident 90 --coverage 0.9
 
 ```
 
@@ -61,9 +61,9 @@ python CHERRY_crispr_DATABASE/Cherry_crispr_db.py --infile nucl.fna --outfolder 
       --threads 
                             Number of threads to run the program (default 8)
       --ident
-                            Identity threshold for the alignments (default 95)
+                            Identity threshold for the alignments (default 90)
       --coverage
-                            Coverage threshold for the alignments (default 0.95)
+                            Coverage threshold for the alignments (default 0.9)
 
 
 **The program will return the results that meet both ident & coverage thresholds.**
