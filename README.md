@@ -38,6 +38,8 @@ conda install blast -c bioconda
 <a name="quick"></a>
 ## 🚀&nbsp; Quick Start
 
+**Remember to conda activate your env first**
+
 ```
 git clone https://github.com/KennthShang/CHERRY_crispr_DATABASE.git
 
