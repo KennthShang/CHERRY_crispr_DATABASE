@@ -80,6 +80,7 @@ Input (provided by the user):
 Output:
     1. The host range of the given phages (CSV files)
     2. RAW BLASTN alignment results (NCBI blast+)
+       [In the program --ident refer to pident and --coverage refer to length/slen]
 
 You can find the full taxonomy entry of the bacteria accession using the file in dataset/prokaryote.csv
 ```
