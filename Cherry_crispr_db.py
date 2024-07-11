@@ -63,7 +63,11 @@ crispr_call = NcbiblastnCommandline(query=query_file,db=db_host_crispr_prefix,ou
 crispr_call()
 
 
-crispr_pred = {}
+# parse the BLASTN result
+Accession = []
+prediction = []
+Coverage = []
+Identity = []
 with open(output_file) as file_out:
     for line in file_out.readlines():
         parse = line.replace("\n", "").split("\t")
@@ -74,24 +78,15 @@ with open(output_file) as file_out:
         length = float(parse[-2])
         slen = float(parse[-1])
         if length/slen > coverage_in and ident > ident_in:
-            try:
-                crispr_pred[virus].append(prokaryote)
-            except:
-                crispr_pred[virus] = [prokaryote]
+            Accession.append(virus)
+            prediction.append(prokaryote)
+            Identity.append(ident)
+            Coverage.append(length/slen)
+                
+df = pd.DataFrame({"Phages": Accession, "Bacteria_MAG": prediction, 'Identity': Identity, 'Coverage': Coverage})
+df = df.drop_duplicates()
 
-with open(f'{outfolder}/prediction.csv', 'w') as f_out:
-    f_out.write(f'Accession,Host_range\n')
-    for virus in crispr_pred:
-        results = f'{virus},'
-        for host in crispr_pred[virus]:
-            try:
-                name = bacteria_df[bacteria_df['Accession'] == host]['Species'].values[0]
-                results += f'{name}({host})|'
-            except:
-                results += f'({host})|'
-        results = results[:-1]+'\n'
-        f_out.write(f'{results}')
-
+df.to_csv(f'{outfolder}/cherry_crispr_pred.csv', index=False)
 os.system(f"sed -i '1i\qseqid\tsseqid\tevalue\tpident\tlength\tslen' {outfolder}/alignment_result.tab")
 
 print('Program complete!')
