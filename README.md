@@ -1,76 +1,94 @@
-# CHERRY-crispr version
+![CHERRY](logo.png)
+
+# CHERRY-crispr DATABASE version
+
+This program provides an extension version of CHERRY, which uses the CRISPR information in CHERRY's database for host prediction. 
+
+The main local program is available via [PhaBOX](https://github.com/KennthShang/PhaBOX) and [WebServer](https://phage.ee.cityu.edu.hk/)
 
 
-CHERRY is a python library for predicting the interactions between viral and prokaryotic genomes. CHERRY is based on a deep learning model, which consists of a graph convolutional encoder and a link prediction decoder.
+Table of Contents
+=================
+* [ 🚀&nbsp; Installation](#install)
+* [ 🚀&nbsp; Quick Start](#quick)
+* [ ⌛️&nbsp; Usage](#usage)
+* [ 📈&nbsp; Output Format  ](#output)
+* [ 📫&nbsp; Have a question? ](#question)
+* [ ✏️&nbsp; Citation ](#citation)
+* [ 🤵&nbsp; Team ](#team)
 
 
-In this program, we provide an extension version of CHERRY, which uses the CRISPR information in CHERRY's database for multi-host (host range) prediction. 
+<a name="install"></a>
+## 🚀&nbsp; Installation
 
-```
-
-Input (provided by the user):
-    1. phage contigs from their samples (FASTA files)
-
-Output:
-    The host range of the given phages (CSV files)
-```
+**If you have already installed phabox before, you can skip this part and directly use the phabox environment**
 
 
-## Required Dependencies
-
-* Python 3.x
-* Pandas
-* Numpy
-* Biopython
-* NCBI BLAST+
-
-## An easiler way to install
-
-We suggest you to install all the package using conda (both miniconda and Anaconda are ok) following the command lines as below:
+We suggest you install all the packages using conda (both Miniconda and Anaconda are ok) following the command lines below:
 
 ```
-conda create --name cherry_crispr_multihost python=3.8
-conda activate cherry_crispr_multihost
-
+conda create --name cherry_crispr_db python=3.8
+conda activate cherry_crispr_db
 conda install pandas numpy biopython
 conda install blast -c bioconda
 ```
 
-## Usage
 
-Once install the required environment, you need to activate it when you want to use:
 
-```
-conda activate cherry_crispr_multihost
-```
-
-Then, the command of multi-host extension can be called by:
-
+<a name="quick"></a>
+## 🚀&nbsp; Quick Start
 
 ```
-python PATH_TO_cherry_crispr_multihost/Cherry_multihost.py --infile PATH_TO_FASTA --outfolder PATH_TO_OUTPUT_FOLDER --datasetpth [where you place the dataset folder provided in this GitHub] --threads NUM_OF_THREAD --ident IDENTITY_OF_ALIGNMENT --coverage COVERAGE_OF_ALIGNMENT
+git clone https://github.com/KennthShang/CHERRY_crispr_DB.git
 
-# example
-python CHERRY_crispr_multihost/Cherry_multihost.py --infile nucl.fasta --outfolder test_out/ --datasetpth CHERRY_crispr_multihost/dataset --ident 75 --coverage 0.75
+python CHERRY_crispr_DB/Cherry_crispr_db.py --infile nucl.fna --outfolder test_out/ --datasetpth CHERRY_crispr_DB/dataset --ident 95 --coverage 0.95
+
 ```
 
 
-There are two thresholds for users:
-
-1. --ident: the identity of the CRISPRs alignments (default: 75)
-2. --coverage: the coverage of the CRISPRs alignments (default: 0.75)
+<a name="usage"></a>
+## ⌛️&nbsp; Usage 
 
 
-## Outputs
+      --infile 
+                            input fasta file
+      --outfolder 
+                            path to the output folder
+      --datasetpth 
+                            path to the CHERRY_crispr_DB/dataset/
+      --threads 
+                            Number of threads to run the program (default 8)
+      --ident
+                            Identity threshold for the alignments (default 95)
+      --coverage
+                            Coverage threshold for the alignments (default 0.95)
 
-There are two output files in `--outfolder PATH_TO_OUTPUT_FOLDER`.
 
-1. alignment_result.tab: BLASTN results between CRISPR and phage
-2. prediction.csv: CSV files of the prediction (alignment > `--ident IDENTITY_OF_ALIGNMENT` && > `--coverage COVERAGE_OF_ALIGNMENT`)
+**The program will return the results that meet both ident & coverage thresholds.**
 
 
 
-## Citation
+<a name="output"></a>
+## 📈&nbsp; Output format
+
+```
+Input (provided by the user):
+    1. phage contigs from their samples (FASTA files)
+
+Output:
+    1. The host range of the given phages (CSV files)
+    2. RAW BLASTN alignment results (NCBI blast+)
+```
+
+
+<a name="question"></a>
+## 📫&nbsp; Have a question?
+
+We are happy to hear your question on our issues page [CHERRY](https://github.com/KennthShang/CHERRY_crispr_DB/issues)! Obviously, if you have a private question or want to cooperate with us, you can always **reach out to us directly** via our email: jiayushang@cuhk.edu.hk 
+
+
+<a name="citation"></a>
+## ✏️&nbsp; Citation
 If you use this program, please cite the following papers:
 
 * CHERRY:
@@ -78,5 +96,23 @@ If you use this program, please cite the following papers:
 Jiayu Shang, Yanni Sun, CHERRY: a Computational metHod for accuratE pRediction of virus–pRokarYotic interactions using a graph encoder–decoder model, Briefings in Bioinformatics, 2022;, bbac182, https://doi.org/10.1093/bib/bbac182
 ```
 
-The original version of CHERRY can be found via: [CHERRY](https://github.com/KennthShang/CHERRY)
+
+<a name="team"></a>
+## 🤵&nbsp; Team
+
+ * <b>Head of PhaBOX program</b><br/>
+
+ | [Jiayu SHANG](https://kennthshang.github.io/)       | [Cheng PENG](https://github.com/ChengPENG-wolf)       |
+|:-------------------------:|:-------------------------:|
+| <img width=120/ src="imgs/mine.pic.jpg?raw=true"> | <img width=120/ src="imgs/Wolf.jpg?raw=true"> |
+
+
+ * <b>Supervisor</b><br/>
+ 
+ | [Yanni SUN](https://yannisun.github.io/)       |
+|:-------------------------:|
+| <img width=120/ src="imgs/yanni.png?raw=true"> |
+
+
+Our groupmates also provide many useful tools for bioinformatics analysis. Please check [Yanni's Group](https://yannisun.github.io/tools.html) for further information. Hope you will like them! 
 
