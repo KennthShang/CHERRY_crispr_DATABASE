@@ -22,8 +22,8 @@ parser.add_argument('--infile', type=str, default = 'virus.fa')
 parser.add_argument('--outfolder', type=str, default = 'out')
 parser.add_argument('--datasetpth', type=str, default = 'dataset')
 parser.add_argument('--threads', type=int, default = 16)
-parser.add_argument('--ident', type=float, default = 95)
-parser.add_argument('--coverage', type=float, default = 0.95)
+parser.add_argument('--ident', type=float, default = 90)
+parser.add_argument('--coverage', type=float, default = 0.9)
 inputs = parser.parse_args()
 
 datasetpth = inputs.datasetpth
