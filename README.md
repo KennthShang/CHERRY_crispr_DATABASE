@@ -1,4 +1,4 @@
-![CHERRY](logo.png)
+![CHERRY](imgs/logo.png)
 
 # CHERRY-crispr DATABASE version
 
